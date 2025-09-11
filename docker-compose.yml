@@ -1,0 +1,40 @@
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8050
+    volumes:
+      - .:/code
+    ports:
+      - "8050:8050"
+    environment:
+      - DJANGO_SECRET_KEY=changeme
+      - POSTGRES_DB=cinehub_db
+      - POSTGRES_USER=cinehub_user
+      - POSTGRES_PASSWORD=cinehub_pass
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: cinehub_db
+      POSTGRES_USER: cinehub_user
+      POSTGRES_PASSWORD: cinehub_pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: administrador@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin12345
+    ports:
+      - "5051:80"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
+
