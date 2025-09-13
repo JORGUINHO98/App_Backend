@@ -17,11 +17,14 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework_simplejwt",   # 👈 agregado
     "cineapp",
+    "corsheaders",  # <-- AGREGADO
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",  # <-- AGREGADO
+
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -77,3 +80,12 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     )
 }
+
+# AGREGAR AL FINAL DEL ARCHIVO
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000", # Reemplaza con la URL de tu frontend en desarrollo
+    "http://192.168.0.18:3000", # O la IP específica
+    "http://localhost:8081", # Añadido para el frontend que se ejecuta en 8081
+]
+
+CORS_ALLOW_ALL_ORIGINS = False # Es más seguro ser explícito con los orígenes
