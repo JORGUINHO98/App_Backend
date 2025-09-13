@@ -15,6 +15,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "rest_framework_simplejwt",   # 👈 agregado
     "cineapp",
 ]
 
@@ -68,5 +69,11 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-# 🔧 Solución a los warnings de AutoField
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# 👇 Configuración para JWT
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    )
+}
