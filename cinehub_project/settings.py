@@ -14,17 +14,23 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    # Terceros
     "rest_framework",
     "rest_framework_simplejwt",   # JWT
+    "corsheaders",                # CORS
+
+    # Local
     "cineapp",
-    "corsheaders",  # CORS
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "corsheaders.middleware.CorsMiddleware",  # CORS habilitado
+
+    "corsheaders.middleware.CorsMiddleware",  # CORS habilitado (antes que CommonMiddleware)
     "django.middleware.common.CommonMiddleware",
+
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
@@ -62,9 +68,18 @@ DATABASES = {
     }
 }
 
-AUTH_PASSWORD_VALIDATORS = []
 
-LANGUAGE_CODE = "en-us"
+AUTH_USER_MODEL = "cineapp.Usuario"
+
+AUTH_PASSWORD_VALIDATORS = []  
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    )
+}
+
+LANGUAGE_CODE = "es-es"
 TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
@@ -74,22 +89,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# JWT
-REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
-    )
-}
-
-# CORS
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://192.168.0.18:3000",
-    "http://localhost:8081",
-    "http://192.168.0.18:8081",
-    "http://localhost:19006",
-    "http://192.168.0.18:19006",
-]
-# Modelo de usuario personalizado
-AUTH_USER_MODEL = "cineapp.Usuario"
-
+CORS_ALLOW_ALL_ORIGINS = True  
