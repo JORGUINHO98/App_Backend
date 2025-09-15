@@ -15,16 +15,15 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
-    "rest_framework_simplejwt",   # 👈 agregado
+    "rest_framework_simplejwt",   # JWT
     "cineapp",
-    "corsheaders",  # <-- AGREGADO
+    "corsheaders",  # CORS
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "corsheaders.middleware.CorsMiddleware",  # <-- AGREGADO
-
+    "corsheaders.middleware.CorsMiddleware",  # CORS habilitado
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -71,21 +70,26 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# 👇 Configuración para JWT
+# JWT
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     )
 }
 
-# AGREGAR AL FINAL DEL ARCHIVO
+# CORS
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000", # Reemplaza con la URL de tu frontend en desarrollo
-    "http://192.168.0.18:3000", # O la IP específica
-    "http://localhost:8081", # Añadido para el frontend que se ejecuta en 8081
+    "http://localhost:3000",
+    "http://192.168.0.18:3000",
+    "http://localhost:8081",
+    "http://192.168.0.18:8081",
+    "http://localhost:19006",
+    "http://192.168.0.18:19006",
 ]
+# Modelo de usuario personalizado
+AUTH_USER_MODEL = "cineapp.Usuario"
 
-CORS_ALLOW_ALL_ORIGINS = False # Es más seguro ser explícito con los orígenes

@@ -20,11 +20,13 @@ class RegisterSerializer(ModelSerializer):
         )
         return user
 
+
 # 🔹 Vista de registro
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     permission_classes = (AllowAny,)
     serializer_class = RegisterSerializer
+
 
 # 🔹 Vista de perfil (requiere login con JWT)
 class ProfileView(APIView):
