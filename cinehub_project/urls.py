@@ -3,7 +3,7 @@ from django.urls import path, include
 from rest_framework import routers
 from cineapp import views
 from cineapp.views_auth import RegisterView, ProfileView, EmailTokenObtainPairView
-from rest_framework_simplejwt.views import TokenRefreshView
+from rest_framework_simplejwt.views import TokenRefreshView 
 
 router = routers.DefaultRouter()
 router.register(r"usuarios", views.UsuarioViewSet)
