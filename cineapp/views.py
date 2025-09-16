@@ -1,6 +1,11 @@
 from rest_framework import viewsets
 from .models import Usuario, Rol, Permiso, Favorito, Visto
 from .serializers import UsuarioSerializer, RolSerializer, PermisoSerializer, FavoritoSerializer, VistoSerializer
+from rest_framework.generics import CreateAPIView
+from .serializers import UsuarioRegisterSerializer
+
+class RegisterView(CreateAPIView):
+    serializer_class = UsuarioRegisterSerializer
 
 class UsuarioViewSet(viewsets.ModelViewSet):
     queryset = Usuario.objects.all()
