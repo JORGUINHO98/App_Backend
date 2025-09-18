@@ -1,4 +1,4 @@
-from rest_framework import serializers
+from rest_framework import serializers # type: ignore
 from .models import Usuario, Rol, Permiso, Favorito, Visto
 
 class UsuarioSerializer(serializers.ModelSerializer):
@@ -45,4 +45,11 @@ class FavoritoSerializer(serializers.ModelSerializer):
 class VistoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Visto
+        fields = "__all__"
+
+from .models import Pelicula
+
+class PeliculaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Pelicula
         fields = "__all__"

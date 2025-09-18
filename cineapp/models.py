@@ -1,6 +1,6 @@
-from django.db import models
-from django.conf import settings
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+from django.db import models # type: ignore
+from django.conf import settings # type: ignore
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager # type: ignore
 
 class UsuarioManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -70,3 +70,10 @@ class Visto(models.Model):
 
     def __str__(self):
         return f"{self.titulo} visto por {self.usuario}"
+
+class Pelicula(models.Model):
+    titulo = models.CharField(max_length=200)
+    descripcion = models.TextField(null=True, blank=True)
+    fecha_lanzamiento = models.DateField(null=True, blank=True)
+    poster = models.URLField(null=True, blank=True)
+    tmdb_id = models.IntegerField(unique=True, null=True, blank=True)  # 🔑 Para no duplicar

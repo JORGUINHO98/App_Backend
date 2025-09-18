@@ -1,6 +1,8 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.admin import UserAdmin # type: ignore
+
 from .models import Permiso, Rol, Usuario, Favorito, Visto
+
 
 @admin.register(Permiso)
 class PermisoAdmin(admin.ModelAdmin):

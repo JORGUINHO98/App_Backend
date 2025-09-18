@@ -1,6 +1,14 @@
-django
-djangorestframework
-djangorestframework-simplejwt
-django-cors-headers
-psycopg2-binary
-gunicorn
+# Django + REST Framework
+django==5.0.6
+djangorestframework==3.15.2
+djangorestframework-simplejwt==5.3.1
+django-cors-headers==4.3.1
+
+# Base de datos PostgreSQL
+psycopg2-binary==2.9.9
+
+# Servidor WSGI para producción
+gunicorn==21.2.0
+
+# Peticiones HTTP
+requests==2.32.3
